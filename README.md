@@ -6,6 +6,14 @@ W trakcie realizacji dogłebnie musiałem zrozumieć jak działają pliki wykony
 ## Zasada działania
 Loader (na ten moment, można go zastąpić lepszą metodą i wykonywać arbitralny kod bez zapisu na dysku) odczytuje target ELF z pliku, waliduje go,nastepnie intepretuje go zgodnie z headerem foramtu ELF otrzymując w pamięcie prawidłowy obraz tego ELF'a (emulacja execv).  
 Ta czynność składa się z kroków opisanych w kodzie źródłowym, i widocznych jako sam kod. Kilka ciekowaych rzeczy, które implementuje loader, to między innymi parsowanie symboli z target, odnajdywanie i relokowanie prawidłowych odniesień symboli do libc, lokalizowanie *main*, i wywołanie go jako funkcji.
+
+## Źródła
+https://github.com/torvalds/linux/blob/master/include/uapi/linux/elf.h  
+https://dandylife.net/blog/archives/660  
+https://refspecs.linuxfoundation.org/LSB_2.1.0/LSB-Core-generic/LSB-Core-generic/elftypes.html  
+https://man7.org/linux/man-pages  
+
+
 ## Get Started 🚀  
 Plik ELF, który jest "targetem" to  
 *./target/target.c*  
@@ -41,7 +49,7 @@ Jest to dokładnie zachowanie, którego oczekujemy, ponieważ target.c wygląda 
 ```c
 #include <math.h>
 
-int printf ( const char * format, ... );
+int printf (const char * format, ... );
 
 int absabs(int a) { 
     if (a < 0) { 
