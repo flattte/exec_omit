@@ -32,11 +32,11 @@ Loader, który odpowiada za pełne zmapowanie + dostęp do libc (na razie tylko 
 ```
 [INFO] :: File has been read into the buffer
 [INFO] :: ELF validated.
-[INFO] :: mmap done, resulting address of exec is: 0x7f8abb731000
-[INFO] :: resolved sym not in libc, is a function
-[INFO] :: resolved sym not in libc, is a function
-[INFO] :: resolved sym not in libc, is a function
-[INFO] :: entry of mapped progrma localised at 0x7f8abb732152
+[INFO] :: mmap done, resulting address of exec is: 0x7f6efc7d3000
+[INFO] :: resolved sym not in libc, is a jmp label or dat
+[INFO] :: resolved sym not in libc, is a jmp label or dat
+[INFO] :: resolved sym not in libc, is a jmp label or dat
+[INFO] :: entry of mapped progrma localised at 0x7f6efc7d4152
 [INFO] :: Run the loaded program:
 ----------------
 
