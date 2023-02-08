@@ -21,23 +21,21 @@ Loader, który odpowiada za pełne zmapowanie + dostęp do libc (na razie tylko 
 ```
 
 ## Output, który powinien się pojawić (verbose)
-```
+```c
 [INFO] :: File has been read into the buffer
 [INFO] :: ELF validated.
-[INFO] :: mmap done, resulting address of exec is: 0x7f7e1ce90000
-[INFO]: resolved sym not in libc, is a function
-[INFO]: resolved sym not in libc, is a function
-[INFO]: resolved sym not in libc, is a function
-[INFO] entry of mapped program localised at 0x7f7e1ce91152
+[INFO] :: mmap done, resulting address of exec is: 0x7f8abb731000
+[INFO] :: resolved sym not in libc, is a function
+[INFO] :: resolved sym not in libc, is a function
+[INFO] :: resolved sym not in libc, is a function
+[INFO] :: entry of mapped progrma localised at 0x7f8abb732152
 [INFO] :: Run the loaded program:
 ----------------
 
-hello from elf
+hello from other elf
 
 ----------------
 [INFO] :: End of the loaded program: program returned status: 3048
-```
-Co jest pożądanym wynikiem, ponieważ target.c robi dokładnie to co zostało zaprezentowane:
 ```c
 #include <math.h>
 
@@ -53,10 +51,19 @@ int absabs(int a) {
 int main(int argc, char** argv) {
     absabs(-10);
     double k = sin(343.3);
-    const char* aa = "hello from other elf\n";
+    const char* aa = "hello from other elf\n";[INFO] :: File has been read into the buffer
+[INFO] :: ELF validated.
+[INFO] :: mmap done, resulting address of exec is: 0x7f8abb731000
+[INFO] :: resolved sym not in libc, is a function
+[INFO] :: resolved sym not in libc, is a function
+[INFO] :: resolved sym not in libc, is a function
+[INFO] :: entry of mapped progrma localised at 0x7f8abb732152
+[INFO] :: Run the loaded program:
+----------------
 
-    printf(aa);
-    return absabs((int)(0.4  * k * 10000));
-}
+hello from other elf
+
+----------------
+[INFO] :: End of the loaded program: program returned status: 3048
 ```
 
