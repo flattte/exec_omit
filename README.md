@@ -1,8 +1,11 @@
 
 # ELF loader, pomija wszystkie syscalle typu execv 
-Celem jest wykonanie pliku ELF bez użycia standardowych wywołań, które do tego służą  
+Celem jest wykonanie pliku ELF (64bit) bez użycia standardowych wywołań, które do tego służą  
 Temat zadany w poleceniu projektu okazał dla mnie niespójny, więc zdecydowałem się na taka implementację  
 W trakcie realizacji dogłebnie musiałem zrozumieć jak działają pliki wykonywalne więc było absolutnie warto  
+## Zasada działania
+Loader (na ten moment, można go zastąpić lepszą metodą i wykonywać arbitralny kod bez zapisu na dysku) odczytuje target ELF z pliku, waliduje go,nastepnie intepretuje go zgodnie z headerem foramtu ELF otrzymując w pamięcie prawidłowy obraz tego ELF'a (emulacja execv).  
+Ta czynność składa się z kroków opisanych w kodzie źródłowym, i widocznych jako sam kod. Kilka ciekowaych rzeczy, które implementuje loader, to między innymi parsowanie symboli z target, odnajdywanie i relokowanie prawidłowych odniesień symboli do libc, lokalizowanie *main*, i wywołanie go jako funkcji.
 ## Get Started 🚀  
 Plik ELF, który jest "targetem" to  
 *./target/target.c*  
