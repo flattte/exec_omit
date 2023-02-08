@@ -23,7 +23,7 @@ Loader, który odpowiada za pełne zmapowanie + dostęp do libc (na razie tylko 
 [INFO]: resolved sym not in libc, is a function
 [INFO]: resolved sym not in libc, is a function
 [INFO]: resolved sym not in libc, is a function
-[INFO] entry of mapped progrma localised at 0x7f7e1ce91152
+[INFO] entry of mapped program localised at 0x7f7e1ce91152
 [INFO] :: Run the loaded program:
 ----------------
 
