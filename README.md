@@ -21,7 +21,7 @@ Loader, który odpowiada za pełne zmapowanie + dostęp do libc (na razie tylko 
 ```
 
 ## Output, który powinien się pojawić (verbose)
-```c
+```
 [INFO] :: File has been read into the buffer
 [INFO] :: ELF validated.
 [INFO] :: mmap done, resulting address of exec is: 0x7f8abb731000
@@ -36,6 +36,7 @@ hello from other elf
 
 ----------------
 [INFO] :: End of the loaded program: program returned status: 3048
+```
 ```c
 #include <math.h>
 
