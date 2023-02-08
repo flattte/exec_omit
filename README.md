@@ -1,6 +1,8 @@
 
 # ELF loader, pomija wszystkie syscalle typu execv 
-Celem jest wykonanie pliku ELF bez użycia standardowych wywołań, które do tego służą
+Celem jest wykonanie pliku ELF bez użycia standardowych wywołań, które do tego służą  
+Temat zadany w poleceniu projektu okazał dla mnie niespójny, więc zdecydowałem się na taka implementację  
+W trakcie realizacji dogłebnie musiałem zrozumieć jak działają pliki wykonywalne więc było absolutnie warto  
 ## Get Started 🚀  
 Plik ELF, który jest "targetem" to  
 *./target/target.c*  
