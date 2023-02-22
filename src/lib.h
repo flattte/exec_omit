@@ -57,7 +57,7 @@ void *resolve(const char *sym, void *handle) {
     return resolved_sym;
 }
 
-// provide reslved implementation for stuff in libc
+// provide resolved implementation for stuff in libc
 void reloc(Elf64_Shdr *shdr, const Elf64_Sym *syms, const char *strings, const char *src, char *dst) {
     void *handle = dlopen("libc.so.6", RTLD_NOW);
     Elf64_Rel *rel = (Elf64_Rel *)(src + shdr->sh_offset);
@@ -70,7 +70,7 @@ void reloc(Elf64_Shdr *shdr, const Elf64_Sym *syms, const char *strings, const c
     }
 }
 
-// provide reslved implementation for stuff in libc
+// provide resolved implementation for stuff in libc
 void reloca(Elf64_Shdr *shdr, const Elf64_Sym *syms, const char *strings, const char *src, char *dst) {
     void *handle = dlopen("libc.so.6", RTLD_NOW);
     Elf64_Rela *rel = (Elf64_Rela *)(src + shdr->sh_offset);
