@@ -49,11 +49,6 @@ bool valid_hdr(Elf64_Ehdr *hdr) {
 // find sym in libc
 void *resolve(const char *sym, void *handle) {
     void *resolved_sym = dlsym(handle, sym);
-    if (resolved_sym == NULL) {
-    #ifdef DEBUG
-        printf("[INFO] :: resolved sym not in libc, is a jmp label or dat\n");
-    #endif
-    }
     return resolved_sym;
 }
 
@@ -122,9 +117,6 @@ char *alloc_exec(size_t size) {
                     MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
 
     if (exec == MAP_FAILED || !exec) {
-    #ifdef DEBUG
-        printf("[ERROR] ::  mmap fail [errno] :: %s\n", strerror(errno));
-    #endif
         return NULL;
     }
 #ifdef DEBUG
@@ -157,10 +149,6 @@ void *map_elf(char *elf_start, size_t size) {
 
         if (phdr[i].p_filesz > phdr[i].p_memsz) {
             munmap(exec, size);
-        #ifdef DEBUG
-            printf("[INFO] :: Image_load:: p_filesz > p_memsz (%ld > %ld)\n", phdr[i].p_filesz, phdr[i].p_memsz);
-            printf("[INFO] :: munmap done\n");
-        #endif
         }
 
         if (!(phdr[i].p_filesz)) {
