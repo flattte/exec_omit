@@ -2,6 +2,14 @@
 #define UTILS_H
 #include <stdio.h>
 
+#ifdef DEBUG
+#define log_info(...) printf("[INFO] " __VA_ARGS__ )
+#define log_error(...) printf("[ERROR] " __VA_ARGS__)
+#else
+#define log_info(...)
+#define log_error(...)
+#endif
+
 void hex_dump(char *buf, int size) {
     printf("%d\n", size);
     int line_position = 0;

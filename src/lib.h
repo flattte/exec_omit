@@ -1,12 +1,14 @@
 #include <dlfcn.h>
 #include <sys/mman.h>
-#include <elf.h>
 #include <unistd.h>
 #include <stdbool.h>
 
 #include <string.h> 
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "elfinclude.h"
+#include "utils.h"
 
 #define SEEK_END 2
 
@@ -119,9 +121,7 @@ char *alloc_exec(size_t size) {
     if (exec == MAP_FAILED || !exec) {
         return NULL;
     }
-#ifdef DEBUG
-    printf("[INFO] :: mmap done, resulting address of exec is: %p\n", (void *)exec);
-#endif
+    log_info(":: mmap done, resulting address of exec is: %p\n", (void *)exec);
     memset(exec, 0x0, size);
     return exec;
 }
@@ -131,9 +131,7 @@ void *map_elf(char *elf_start, size_t size) {
     Elf64_Ehdr *hdr = (Elf64_Ehdr *)elf_start;
     //validate the hdr
     if (!valid_hdr(hdr)) {
-    #ifdef DEBUG
-        printf("[ERROR] :: Invalid ELF image\n");
-    #endif
+    log_error(":: Invalid ELF image\n");
         return NULL;
     }
 
@@ -190,8 +188,6 @@ void *map_elf(char *elf_start, size_t size) {
 
     //find entry point of program
     void *entry = find_sym("main", shdr, shdr + symbol_table_index, elf_start, exec);
-#ifdef DEBUG
-    printf("[INFO] :: entry of mapped progrma localised at %p\n", entry);
-#endif
+    log_info(":: entry of mapped progrma localised at %p\n", entry);
     return entry;
 }

@@ -7,15 +7,15 @@
 
 #include <dlfcn.h>
 #include <sys/mman.h>
-#include <elf.h>
 
 #include "utils.h"
 #include "lib.h"
+#include "elfinclude.h"
 
 
 int main(int argc, char **argv, char **envp) {
     if (argc < 2) {
-        fprintf(stderr, "provide file to load");
+        log_error("provide file to load");
         return 1;
     }
 
@@ -25,28 +25,21 @@ int main(int argc, char **argv, char **envp) {
     if (elf != NULL) {
         //int (*program)(int, char **, char **);
         //fread(buf, sizeof(buf), 1, elf);
-    #ifdef DEBUG
-        printf("[INFO] :: File has been read into the buffer\n");
-    #endif
+        log_info("File has been read into the buffer\n");
         int (*program)(int, char **, char **) = map_elf(elf, size);
         if (program != NULL) {
-    #ifdef DEBUG
-        printf("[INFO] :: Run the loaded program:\n----------------\n\n");
-    #endif
-        int status = program(argc, argv, envp);
-    #ifdef DEBUG
-        printf("\n----------------\n[INFO] :: End of the loaded program: program returned status: %d\n", status);
-    #endif
+            log_info(":: Run the loaded program:\n----------------\n\n");
+            int status = program(argc, argv, envp);
+            log_info("\n----------------\n");
+            log_info(":: End of the loaded program: program returned status: %d\n", status);
+            (void)status; // silly warnings!
         }
         else {
-    #ifdef DEBUG
-        printf("[ERROR] :: Loading unsuccessful. \n");
-    #endif
+            log_error(":: Loading unsuccessful.\n");
         }
+
         return 0;
     }
-#ifdef DEBUG
-    printf("[ERROR] :: Arguments were bad");
-#endif
+    log_error(":: Argument were bad.\n");
     return 1;
 }
